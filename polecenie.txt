@@ -1,0 +1,45 @@
+Jedną z najlepszych metod omijania cenzury w internecie oraz zapewniania sobie anonimowości jest sieć TOR (The Onion Router). Poniżej znajduje się jej krótki opis. W sieci TOR występują trzy rodzaje bytów:
+
+Klienci
+
+Węzły pośredniczące
+
+Węzły końcowe
+
+Połączenie klienta działa w następujący sposób:
+
+Klient łączy się z jednym z węzłów pośredniczących (np. P1) i wysyła pakiet danych. Pakiet ten jest zaszyfrowany w taki sposób, że tylko P1 może go odczytać.
+
+Po odszyfrowaniu P1 otrzymuje dwie informacje: adres kolejnego węzła (P2) oraz zaszyfrowaną paczkę danych, którą powinien przesłać do P2.
+
+P2 odbiera pakiet, odszyfrowuje go (uzyskując adres P3) i przekazuje dalej.
+
+Proces powtarza się, aż węzeł PN po odszyfrowaniu przesyła pakiet do węzła końcowego (WK), który wysyła go w postaci odszyfrowanej do docelowego odbiorcy.
+
+Odbiorca myśli, że komunikuje się z węzłem końcowym. Gdy wysyła odpowiedź, dane wracają tą samą drogą, ale w odwrotnej kolejności:
+
+WK → PN → P(N-1) → ... → P1 → Klient
+
+Kluczowe pytanie brzmi: Skąd węzeł końcowy (WK) wie, którą drogą przesłać dane z powrotem? Odpowiedź jest prosta: nie wie! Odsyła je tam, skąd je otrzymał.
+
+Państwa system powinien działać podobnie, ale nie musi wykorzystywać szyfrowania.
+
+Wymagania systemu:
+
+Umożliwia przesyłanie komunikatów UDP.
+
+Klient posiada listę wszystkich węzłów pośredniczących i wybiera trasę składającą się z N węzłów.
+
+Do P1 wysyła komunikat zawierający:
+
+listę węzłów pośrednich,
+
+docelowego odbiorcę,
+
+dane do przesłania.
+
+Każdy węzeł PN zapamiętuje, od kogo otrzymał dane w danym połączeniu.
+
+Możliwe jest wysłanie pakietu UDP bezpośrednio od klienta do innego hosta (z otrzymaniem odpowiedzi). Pakiet (i odpowiedź) musi przejść przez dwa węzły pośredniczące oraz węzeł końcowy.
+
+Sieć musi obsługiwać dwóch równolegle pracujących klientów.
