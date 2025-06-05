@@ -50,6 +50,10 @@ The network consists of three types of components:
 gcc -o tor_network main.c node.c client.c network_utils.c -lpthread
 ```
 
+```bash
+make
+```
+
 ### Execution
 
 ```bash
